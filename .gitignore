@@ -1,0 +1,13 @@
+node_modules
+.next
+out
+.DS_Store
+.env*.local
+*.log
+next-env.d.ts
+
+# Local-machine tool configs
+.claude/
+.sixth/
+.vscode/
+.idea/
