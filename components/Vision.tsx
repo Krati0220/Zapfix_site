@@ -56,9 +56,6 @@ export function Vision() {
               <span className="flex-1 font-display text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-4xl">
                 <span className="shine-text">{l.text}</span>
               </span>
-              <span className="hidden self-center text-3xl text-white/20 transition-all duration-500 group-hover:translate-x-2 group-hover:text-zap-400 sm:block">
-                →
-              </span>
             </motion.div>
           ))}
         </div>

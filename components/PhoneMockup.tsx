@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { LogoMark } from "./Logo";
-import { CheckCircle2, Sparkles, Wrench, Zap } from "lucide-react";
+import { CheckCircle2, Sparkles, User, Wrench, Zap } from "lucide-react";
 
 export function PhoneMockup() {
   return (
@@ -40,7 +40,9 @@ export function PhoneMockup() {
                   <div className="text-sm font-semibold">Aarav</div>
                 </div>
               </div>
-              <div className="h-9 w-9 rounded-full bg-gradient-to-br from-zap-500 to-zap-700" />
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-zap-400 to-zap-700 ring-2 ring-zap-500/30">
+                <User className="h-4.5 w-4.5 text-navy-950" strokeWidth={2.5} />
+              </div>
             </div>
 
             {/* AI diagnosis card */}
@@ -86,7 +88,10 @@ export function PhoneMockup() {
                 Top match nearby
               </div>
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-full bg-gradient-to-br from-navy-400 to-navy-700" />
+                <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-navy-400 to-navy-700 ring-2 ring-white/10">
+                  <User className="h-5 w-5 text-white/90" strokeWidth={2.2} />
+                  <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border-2 border-navy-900 bg-emerald-400" />
+                </div>
                 <div className="flex-1">
                   <div className="text-xs font-semibold">Rohit S.</div>
                   <div className="flex items-center gap-1 text-[10px] text-white/50">

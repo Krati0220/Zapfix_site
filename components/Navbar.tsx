@@ -6,23 +6,72 @@ import { Download, Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { clsx } from "clsx";
 
+// Ordered to match scroll sequence:
+// Hero → Problems → HowItWorks(#how) → AIDiagnosis(#diagnosis) →
+// Professionals(#pro) → Features(#features) → Categories(#categories) →
+// Screenshots → Download → Vision → Footer
 const links = [
-  { href: "#how", label: "How it works" },
-  { href: "#diagnosis", label: "AI Diagnosis" },
-  { href: "#features", label: "Features" },
-  { href: "#categories", label: "Services" },
-  { href: "#pro", label: "For Pros" },
+  { href: "#how", id: "how", label: "How it works" },
+  { href: "#diagnosis", id: "diagnosis", label: "AI Diagnosis" },
+  { href: "#pro", id: "pro", label: "For Pros" },
+  { href: "#features", id: "features", label: "Features" },
+  { href: "#categories", id: "categories", label: "Services" },
 ];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<string | null>(null);
 
+  // Sticky-bg toggle
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Scroll-spy: highlight the nav link whose section is currently in view
+  useEffect(() => {
+    const ids = links.map((l) => l.id);
+    const targets = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (targets.length === 0) return;
+
+    // Track current ratios so we can pick the most-visible section
+    const ratios = new Map<string, number>();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          ratios.set(e.target.id, e.isIntersecting ? e.intersectionRatio : 0);
+        }
+        // Pick the section with the highest visibility ratio
+        let bestId: string | null = null;
+        let bestRatio = 0;
+        for (const [id, r] of ratios) {
+          if (r > bestRatio) {
+            bestRatio = r;
+            bestId = id;
+          }
+        }
+        // Near the very top, clear active so nothing is highlighted on the hero
+        if (window.scrollY < 200) {
+          setActive(null);
+          return;
+        }
+        if (bestId) setActive(bestId);
+      },
+      {
+        // Trigger as a section crosses the upper-middle of the viewport
+        rootMargin: "-25% 0px -50% 0px",
+        threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
+      },
+    );
+
+    targets.forEach((t) => observer.observe(t));
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -44,15 +93,31 @@ export function Navbar() {
         </a>
 
         <nav className="hidden items-center gap-1 lg:flex">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="rounded-full px-4 py-2 text-sm font-medium text-white/70 transition-colors hover:bg-white/5 hover:text-white"
-            >
-              {l.label}
-            </a>
-          ))}
+          {links.map((l) => {
+            const isActive = active === l.id;
+            return (
+              <a
+                key={l.href}
+                href={l.href}
+                aria-current={isActive ? "page" : undefined}
+                className={clsx(
+                  "relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300",
+                  isActive
+                    ? "text-zap-400"
+                    : "text-white/70 hover:text-white",
+                )}
+              >
+                {l.label}
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-active-underline"
+                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                    className="absolute inset-x-4 -bottom-0.5 h-px rounded-full bg-zap-400/80"
+                  />
+                )}
+              </a>
+            );
+          })}
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
@@ -84,16 +149,28 @@ export function Navbar() {
             className="mx-3 mt-2 rounded-3xl border border-white/10 bg-navy-950/95 p-5 backdrop-blur-xl lg:hidden"
           >
             <div className="flex flex-col gap-1">
-              {links.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="rounded-2xl px-4 py-3 text-sm font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white"
-                >
-                  {l.label}
-                </a>
-              ))}
+              {links.map((l) => {
+                const isActive = active === l.id;
+                return (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    aria-current={isActive ? "page" : undefined}
+                    className={clsx(
+                      "flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-medium transition-colors",
+                      isActive
+                        ? "text-zap-400"
+                        : "text-white/80 hover:text-white",
+                    )}
+                  >
+                    <span>{l.label}</span>
+                    {isActive && (
+                      <span className="h-1 w-1 rounded-full bg-zap-400" />
+                    )}
+                  </a>
+                );
+              })}
               <div className="mt-3 flex flex-col gap-2">
                 <a href="#pro" onClick={() => setOpen(false)} className="btn-ghost">
                   Join as Pro

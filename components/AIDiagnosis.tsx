@@ -199,19 +199,19 @@ export function AIDiagnosis() {
               </motion.div>
             </div>
 
-            {/* floating chips */}
+            {/* floating chips — anchored outside the card so they don't overlap interior icons */}
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 5, repeat: Infinity }}
-              className="glass absolute -left-4 top-10 hidden rounded-full px-3 py-1.5 text-[11px] font-medium md:block"
+              className="glass pointer-events-none absolute -left-6 -top-4 hidden whitespace-nowrap rounded-full px-3 py-1.5 text-[11px] font-medium xl:block"
             >
               <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
               98% accuracy
             </motion.div>
             <motion.div
               animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 6, repeat: Infinity }}
-              className="glass absolute -right-4 bottom-16 hidden rounded-full px-3 py-1.5 text-[11px] font-medium md:block"
+              transition={{ duration: 6, repeat: Infinity, delay: 0.5 }}
+              className="glass pointer-events-none absolute -bottom-4 -right-6 hidden whitespace-nowrap rounded-full px-3 py-1.5 text-[11px] font-medium text-zap-400 xl:block"
             >
               ⚡ &lt; 60s diagnosis
             </motion.div>

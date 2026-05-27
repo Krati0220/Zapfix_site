@@ -1,0 +1,23 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ZapFix logo">
+  <defs>
+    <linearGradient id="zapBoltGrad" x1="22" y1="22" x2="50" y2="92" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFCE33"/>
+      <stop offset="55%" stop-color="#F5B800"/>
+      <stop offset="100%" stop-color="#E69100"/>
+    </linearGradient>
+    <linearGradient id="zapWrenchGrad" x1="55" y1="6" x2="90" y2="72" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#D9E0EC"/>
+    </linearGradient>
+  </defs>
+  <g fill="#F5B800">
+    <rect x="8" y="38" width="20" height="4" rx="2"/>
+    <rect x="4" y="49" width="26" height="4" rx="2"/>
+    <rect x="10" y="60" width="18" height="4" rx="2"/>
+  </g>
+  <g transform="rotate(30 68 24)">
+    <path d="M 52 38 L 52 10 L 63 10 L 63 24 L 73 24 L 73 10 L 84 10 L 84 38 Z" fill="url(#zapWrenchGrad)"/>
+    <rect x="60" y="37" width="16" height="44" rx="3" fill="url(#zapWrenchGrad)"/>
+  </g>
+  <path d="M 32 28 L 68 22 L 52 48 L 76 48 L 38 92 L 54 58 L 30 58 Z" fill="url(#zapBoltGrad)"/>
+</svg>
