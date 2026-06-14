@@ -56,7 +56,13 @@ export function Professionals() {
       <div className="pointer-events-none absolute -right-40 top-1/3 -z-10 h-[400px] w-[400px] rounded-full bg-zap-500/10 blur-[140px]" />
 
       <div className="container-zap">
-        <div className="mx-auto max-w-2xl text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7 }}
+          className="mx-auto max-w-2xl text-center"
+        >
           <div className="section-label">Verified Professionals</div>
           <h2 className="h-section">
             Every pro on ZapFix is{" "}
@@ -65,7 +71,7 @@ export function Professionals() {
           <p className="mt-5 text-white/55 sm:text-lg">
             Built for Indian families — verified, uniformed, punctual, and accountable.
           </p>
-        </div>
+        </motion.div>
 
         {/* Trust pillars */}
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

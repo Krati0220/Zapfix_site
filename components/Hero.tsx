@@ -18,8 +18,34 @@ export function Hero() {
       {/* Background layers */}
       <div className="spotlight" />
       <div className="absolute inset-0 -z-10 grid-bg mask-fade-bottom opacity-50" />
-      <div className="pointer-events-none absolute -left-1/4 top-1/3 -z-10 h-[480px] w-[480px] rounded-full bg-zap-500/15 blur-[120px]" />
-      <div className="pointer-events-none absolute -right-1/4 top-0 -z-10 h-[600px] w-[600px] rounded-full bg-navy-700/40 blur-[140px]" />
+      <motion.div
+        animate={{ scale: [1, 1.08, 1], opacity: [0.15, 0.3, 0.15] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="pointer-events-none absolute -left-1/4 top-1/3 -z-10 h-[480px] w-[480px] rounded-full bg-zap-500/15 blur-[120px]"
+      />
+      <motion.div
+        animate={{ scale: [1.08, 1, 1.08], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="pointer-events-none absolute -right-1/4 top-0 -z-10 h-[600px] w-[600px] rounded-full bg-navy-700/40 blur-[140px]"
+      />
+
+      {/* Floating particles */}
+      {[
+        { size: 3, left: "12%", top: "18%", dur: 7, delay: 0 },
+        { size: 2, left: "25%", top: "55%", dur: 9, delay: 1.2 },
+        { size: 4, left: "78%", top: "22%", dur: 6, delay: 0.5 },
+        { size: 2, left: "60%", top: "70%", dur: 8, delay: 2 },
+        { size: 3, left: "88%", top: "48%", dur: 11, delay: 0.8 },
+        { size: 2, left: "45%", top: "12%", dur: 7.5, delay: 1.5 },
+      ].map((p, i) => (
+        <motion.span
+          key={i}
+          animate={{ y: [0, -16, 0], opacity: [0.3, 0.7, 0.3] }}
+          transition={{ duration: p.dur, repeat: Infinity, ease: "easeInOut", delay: p.delay }}
+          style={{ left: p.left, top: p.top, width: p.size, height: p.size }}
+          className="pointer-events-none absolute -z-10 rounded-full bg-zap-400"
+        />
+      ))}
 
       <div className="container-zap relative">
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">

@@ -10,10 +10,12 @@ import { Screenshots } from "@/components/Screenshots";
 import { Download } from "@/components/Download";
 import { Vision } from "@/components/Vision";
 import { Footer } from "@/components/Footer";
+import { ScrollProgress } from "@/components/ScrollProgress";
 
 export default function Home() {
   return (
     <main className="relative">
+      <ScrollProgress />
       <Navbar />
       <Hero />
       <Problems />

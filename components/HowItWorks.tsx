@@ -71,7 +71,13 @@ export function HowItWorks() {
     <section id="how" className="relative overflow-hidden py-24 sm:py-32">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px glow-line" />
       <div className="container-zap">
-        <div className="mx-auto max-w-2xl text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7 }}
+          className="mx-auto max-w-2xl text-center"
+        >
           <div className="section-label">How it works</div>
           <h2 className="h-section">
             Built for both sides — <br className="hidden sm:block" />
@@ -81,7 +87,7 @@ export function HowItWorks() {
             Whether you need a fix or you fix things for a living, ZapFix removes
             the friction.
           </p>
-        </div>
+        </motion.div>
 
         {/* Tabs */}
         <div className="mt-10 flex justify-center">

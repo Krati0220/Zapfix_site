@@ -170,3 +170,57 @@ body {
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
+
+/* ─── Heavy animation utilities ─── */
+
+/* Particle float for hero background dots */
+@keyframes particleFloat {
+  0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.4; }
+  33%       { transform: translateY(-18px) translateX(8px); opacity: 0.8; }
+  66%       { transform: translateY(-8px) translateX(-6px); opacity: 0.5; }
+}
+
+/* Orbit rotation */
+@keyframes orbitCw {
+  from { transform: rotate(0deg) translateX(60px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(60px) rotate(-360deg); }
+}
+@keyframes orbitCcw {
+  from { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+  to   { transform: rotate(-360deg) translateX(80px) rotate(360deg); }
+}
+
+/* Border glow pulse */
+@keyframes borderGlow {
+  0%, 100% { box-shadow: 0 0 0px rgba(245, 184, 0, 0); }
+  50%       { box-shadow: 0 0 20px rgba(245, 184, 0, 0.25); }
+}
+
+/* Text char reveal */
+@keyframes charReveal {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Floating particle dots */
+.particle {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 9999px;
+  background: rgba(245, 184, 0, 0.6);
+  animation: particleFloat linear infinite;
+}
+
+/* Scroll-reveal stagger helper */
+.stagger-children > * {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Legal page prose styles */
+.prose-legal p { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.60); }
+.prose-legal h4 { font-size: 15px; font-weight: 600; color: #fff; margin-top: 20px; margin-bottom: 6px; }
+.prose-legal ul { list-style: none; padding: 0; }
+.prose-legal ul li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: rgba(255,255,255,0.60); margin-bottom: 6px; }
+.prose-legal ul li::before { content: ""; display: block; flex-shrink: 0; width: 6px; height: 6px; border-radius: 9999px; background: #f5b800; margin-top: 6px; }
+.prose-legal strong { color: #fff; font-weight: 600; }
+.prose-legal a { color: #fbbf24; text-decoration: underline; text-underline-offset: 2px; }

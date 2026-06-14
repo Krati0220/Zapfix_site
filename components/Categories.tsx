@@ -30,7 +30,13 @@ export function Categories() {
     <section id="categories" className="relative overflow-hidden py-24 sm:py-32">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px glow-line" />
       <div className="container-zap">
-        <div className="mx-auto max-w-2xl text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7 }}
+          className="mx-auto max-w-2xl text-center"
+        >
           <div className="section-label">Services</div>
           <h2 className="h-section">
             One app for{" "}
@@ -39,7 +45,7 @@ export function Categories() {
           <p className="mt-5 text-white/55 sm:text-lg">
             From a broken AC at midnight to weekend painting — we&apos;ve got the right pro.
           </p>
-        </div>
+        </motion.div>
 
         <div className="mt-14 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
           {categories.map((c, i) => (

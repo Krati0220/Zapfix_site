@@ -72,7 +72,13 @@ export function Features() {
     <section id="features" className="relative overflow-hidden py-24 sm:py-32">
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-navy-950 via-[#08122a] to-navy-950" />
       <div className="container-zap">
-        <div className="mx-auto max-w-2xl text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7 }}
+          className="mx-auto max-w-2xl text-center"
+        >
           <div className="section-label">Platform Features</div>
           <h2 className="h-section">
             Every tool for a{" "}
@@ -81,7 +87,7 @@ export function Features() {
           <p className="mt-5 text-white/55 sm:text-lg">
             Built end-to-end for both sides of the marketplace — buyers and pros.
           </p>
-        </div>
+        </motion.div>
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {features.map((f, i) => (

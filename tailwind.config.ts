@@ -53,6 +53,9 @@ const config: Config = {
         "shimmer": "shimmer 3s linear infinite",
         "spin-slow": "spin 20s linear infinite",
         "marquee": "marquee 40s linear infinite",
+        "border-glow": "borderGlow 3s ease-in-out infinite",
+        "orbit-cw": "orbitCw 12s linear infinite",
+        "orbit-ccw": "orbitCcw 16s linear infinite",
       },
       keyframes: {
         fadeInUp: {
@@ -78,6 +81,18 @@ const config: Config = {
         marquee: {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
+        },
+        borderGlow: {
+          "0%, 100%": { boxShadow: "0 0 0px rgba(245, 184, 0, 0)" },
+          "50%": { boxShadow: "0 0 20px rgba(245, 184, 0, 0.25)" },
+        },
+        orbitCw: {
+          "from": { transform: "rotate(0deg) translateX(60px) rotate(0deg)" },
+          "to": { transform: "rotate(360deg) translateX(60px) rotate(-360deg)" },
+        },
+        orbitCcw: {
+          "from": { transform: "rotate(0deg) translateX(80px) rotate(0deg)" },
+          "to": { transform: "rotate(-360deg) translateX(80px) rotate(360deg)" },
         },
       },
       boxShadow: {
