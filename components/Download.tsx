@@ -41,7 +41,7 @@ export function Download() {
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <Magnetic strength={0.45}>
-                  <a href="#" className="btn-zap group gradient-ring !py-4 !px-8 text-base">
+                  <a href="#" className="btn-zap group !py-4 !px-8 text-base">
                     <DownloadIcon className="h-5 w-5 transition-transform group-hover:-translate-y-0.5" strokeWidth={2.5} />
                     Download APK
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2.5} />
@@ -69,9 +69,6 @@ export function Download() {
                   &lt; <CountUp to={60} suffix="s" />
                 </Metric>
                 <Metric label="Diagnosis fee">₹0</Metric>
-                <Metric label="Repair warranty">
-                  <CountUp to={90} suffix=" day" />
-                </Metric>
               </div>
             </div>
 

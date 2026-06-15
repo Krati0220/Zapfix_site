@@ -126,7 +126,7 @@ export function Navbar() {
             Join as Pro
           </a>
           <Magnetic strength={0.4}>
-            <a href="#download" className="btn-zap gradient-ring py-2.5 text-xs">
+            <a href="#download" className="btn-zap py-2.5 text-xs">
               <Download className="h-3.5 w-3.5" strokeWidth={2.5} />
               Download APK
             </a>

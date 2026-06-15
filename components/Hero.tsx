@@ -116,7 +116,7 @@ export function Hero() {
               className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
             >
               <Magnetic strength={0.45}>
-                <a href="#download" className="btn-zap group gradient-ring">
+                <a href="#download" className="btn-zap group">
                   <Download className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" strokeWidth={2.5} />
                   Download APK
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2.5} />

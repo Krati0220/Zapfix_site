@@ -35,7 +35,7 @@ const customerSteps = [
   {
     icon: CheckCircle2,
     title: "Repair done. Tracked.",
-    body: "Live tracking, in-app chat, warranty + service history, all in one place.",
+    body: "Live tracking, in-app chat, and service history, all in one place.",
   },
 ];
 
@@ -139,7 +139,7 @@ export function HowItWorks() {
 
         <div className="mt-14 flex justify-center">
           <Magnetic strength={0.4}>
-            <a href="#download" className="btn-zap gradient-ring">
+            <a href="#download" className="btn-zap">
               {mode === "customer" ? "Download APK" : "Join as a Pro"}
               <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
             </a>

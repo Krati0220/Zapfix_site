@@ -192,7 +192,7 @@ export function AIDiagnosis() {
                     Fan motor replacement + gas top-up
                   </div>
                   <div className="text-xs text-white/60">
-                    Est. cost · ₹2,400 – ₹3,200 · 90-day warranty
+                    Est. cost · ₹2,400 – ₹3,200
                   </div>
                 </div>
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zap-500 text-navy-950">

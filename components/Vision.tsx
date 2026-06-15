@@ -73,7 +73,7 @@ export function Vision() {
             experience that is intelligent, accountable, and genuinely on their side.
           </p>
           <Magnetic strength={0.4} className="mt-8">
-            <a href="#download" className="btn-zap gradient-ring">
+            <a href="#download" className="btn-zap">
               Be part of the shift
             </a>
           </Magnetic>

@@ -11,7 +11,6 @@ import {
   History,
   Gift,
   PackageCheck,
-  ShieldCheck,
   Bell,
 } from "lucide-react";
 
@@ -44,7 +43,7 @@ const features = [
   {
     icon: History,
     title: "Service history",
-    body: "Every repair, receipt, warranty, and part — saved forever.",
+    body: "Every repair, receipt, and part — saved forever.",
   },
   {
     icon: Gift,
@@ -55,11 +54,6 @@ const features = [
     icon: PackageCheck,
     title: "Inventory for pros",
     body: "Track parts, request stock, and never lose a job to missing tools again.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Warranty tracking",
-    body: "We log every warranty so you don't have to dig through old receipts.",
   },
   {
     icon: Bell,
