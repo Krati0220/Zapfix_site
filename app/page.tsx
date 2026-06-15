@@ -11,11 +11,13 @@ import { Download } from "@/components/Download";
 import { Vision } from "@/components/Vision";
 import { Footer } from "@/components/Footer";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { CursorGlow } from "@/components/interactive/CursorGlow";
 
 export default function Home() {
   return (
     <main className="relative">
       <ScrollProgress />
+      <CursorGlow />
       <Navbar />
       <Hero />
       <Problems />

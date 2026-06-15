@@ -10,6 +10,7 @@ import {
   Clock4,
   ArrowRight,
 } from "lucide-react";
+import { SpotlightCard } from "./interactive/SpotlightCard";
 
 const problems = [
   {
@@ -73,23 +74,25 @@ export function Problems() {
 
         <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {problems.map((p, i) => (
-            <motion.div
+            <SpotlightCard
               key={p.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.06 }}
-              className="group relative overflow-hidden rounded-3xl border border-white/[0.07] bg-gradient-to-b from-white/[0.04] to-transparent p-6 transition-all duration-500 hover:border-white/15"
+              delay={i * 0.06}
+              glow="rgba(248,113,113,0.15)"
+              className="group overflow-hidden rounded-3xl border border-white/[0.07] bg-gradient-to-b from-white/[0.04] to-transparent p-6 transition-colors duration-500 hover:border-white/15"
             >
-              <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-red-400/20 bg-red-400/10 text-red-300">
+              <motion.div
+                whileHover={{ rotate: -8, scale: 1.08 }}
+                transition={{ type: "spring", stiffness: 300, damping: 14 }}
+                className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-red-400/20 bg-red-400/10 text-red-300"
+              >
                 <p.icon className="h-5 w-5" />
-              </div>
+              </motion.div>
               <h3 className="font-display text-lg font-semibold text-white">
                 {p.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-white/55">{p.body}</p>
               <div className="pointer-events-none absolute inset-x-6 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-            </motion.div>
+            </SpotlightCard>
           ))}
         </div>
 

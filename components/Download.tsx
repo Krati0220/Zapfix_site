@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { Download as DownloadIcon, Smartphone, ShieldAlert, ArrowRight } from "lucide-react";
 import { LogoMark } from "./Logo";
+import { Magnetic } from "./interactive/Magnetic";
+import { CountUp } from "./interactive/CountUp";
 
 export function Download() {
   return (
@@ -38,14 +40,18 @@ export function Download() {
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <a href="#" className="btn-zap group !py-4 !px-8 text-base">
-                  <DownloadIcon className="h-5 w-5 transition-transform group-hover:-translate-y-0.5" strokeWidth={2.5} />
-                  Download APK
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2.5} />
-                </a>
-                <a href="#pro" className="btn-ghost !py-4 !px-8 text-base">
-                  Join as Pro
-                </a>
+                <Magnetic strength={0.45}>
+                  <a href="#" className="btn-zap group gradient-ring !py-4 !px-8 text-base">
+                    <DownloadIcon className="h-5 w-5 transition-transform group-hover:-translate-y-0.5" strokeWidth={2.5} />
+                    Download APK
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2.5} />
+                  </a>
+                </Magnetic>
+                <Magnetic strength={0.3}>
+                  <a href="#pro" className="btn-ghost !py-4 !px-8 text-base">
+                    Join as Pro
+                  </a>
+                </Magnetic>
               </div>
 
               {/* disclaimer */}
@@ -59,9 +65,13 @@ export function Download() {
 
               {/* metrics */}
               <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
-                <Metric value="< 60s" label="To AI report" />
-                <Metric value="₹0" label="Diagnosis fee" />
-                <Metric value="90 day" label="Repair warranty" />
+                <Metric label="To AI report">
+                  &lt; <CountUp to={60} suffix="s" />
+                </Metric>
+                <Metric label="Diagnosis fee">₹0</Metric>
+                <Metric label="Repair warranty">
+                  <CountUp to={90} suffix=" day" />
+                </Metric>
               </div>
             </div>
 
@@ -106,10 +116,10 @@ export function Download() {
   );
 }
 
-function Metric({ value, label }: { value: string; label: string }) {
+function Metric({ children, label }: { children: React.ReactNode; label: string }) {
   return (
     <div>
-      <div className="font-display text-xl font-bold text-white sm:text-2xl">{value}</div>
+      <div className="font-display text-xl font-bold text-white sm:text-2xl">{children}</div>
       <div className="text-[11px] uppercase tracking-wider text-white/40">{label}</div>
     </div>
   );

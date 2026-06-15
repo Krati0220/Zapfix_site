@@ -1,8 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Download, Sparkles, ArrowRight, ShieldCheck } from "lucide-react";
 import { PhoneMockup } from "./PhoneMockup";
+import { Magnetic } from "./interactive/Magnetic";
+import { CountUp } from "./interactive/CountUp";
+import { Tilt } from "./interactive/Tilt";
 
 const floatingTags = [
   { label: "AC Cooling Issue", side: "left", x: "4%", y: "10%", delay: 0 },
@@ -13,11 +17,28 @@ const floatingTags = [
 ];
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  // Gentle parallax: phone drifts up, copy drifts down as you scroll past.
+  const phoneY = useTransform(scrollYProgress, [0, 1], [0, -70]);
+  const copyY = useTransform(scrollYProgress, [0, 1], [0, 60]);
+  const heroFade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   return (
-    <section id="top" className="relative overflow-hidden pb-24 pt-32 sm:pt-36 lg:pt-40">
+    <section
+      ref={sectionRef}
+      id="top"
+      className="relative overflow-hidden pb-24 pt-32 sm:pt-36 lg:pt-40"
+    >
       {/* Background layers */}
       <div className="spotlight" />
-      <div className="absolute inset-0 -z-10 grid-bg mask-fade-bottom opacity-50" />
+      <motion.div
+        style={{ opacity: heroFade }}
+        className="absolute inset-0 -z-10 grid-bg mask-fade-bottom opacity-50"
+      />
       <motion.div
         animate={{ scale: [1, 1.08, 1], opacity: [0.15, 0.3, 0.15] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
@@ -50,7 +71,7 @@ export function Hero() {
       <div className="container-zap relative">
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
           {/* Left */}
-          <div className="relative">
+          <motion.div style={{ y: copyY }} className="relative">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -94,14 +115,18 @@ export function Hero() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
               className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
             >
-              <a href="#download" className="btn-zap group">
-                <Download className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" strokeWidth={2.5} />
-                Download APK
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2.5} />
-              </a>
-              <a href="#pro" className="btn-ghost">
-                Join as Pro
-              </a>
+              <Magnetic strength={0.45}>
+                <a href="#download" className="btn-zap group gradient-ring">
+                  <Download className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" strokeWidth={2.5} />
+                  Download APK
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2.5} />
+                </a>
+              </Magnetic>
+              <Magnetic strength={0.3}>
+                <a href="#pro" className="btn-ghost">
+                  Join as Pro
+                </a>
+              </Magnetic>
             </motion.div>
 
             <motion.div
@@ -131,21 +156,29 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="mt-10 flex items-center gap-6 border-t border-white/10 pt-6"
             >
-              <Stat value="98%" label="Diagnosis accuracy" />
+              <Stat label="Diagnosis accuracy">
+                <CountUp to={98} suffix="%" />
+              </Stat>
               <div className="h-8 w-px bg-white/10" />
-              <Stat value="4.9★" label="Verified pros" />
+              <Stat label="Verified pros">
+                <CountUp to={4.9} decimals={1} suffix="★" />
+              </Stat>
               <div className="h-8 w-px bg-white/10" />
-              <Stat value="< 60s" label="To AI report" />
+              <Stat label="To AI report">
+                &lt; <CountUp to={60} suffix="s" />
+              </Stat>
             </motion.div>
-          </div>
+          </motion.div>
 
           {/* Right: phone + floating tags */}
-          <div className="relative flex items-center justify-center">
+          <motion.div style={{ y: phoneY }} className="relative flex items-center justify-center">
             {/* glow */}
             <div className="absolute h-[420px] w-[420px] rounded-full bg-zap-500/20 blur-[100px]" />
             <div className="absolute h-[300px] w-[300px] rounded-full bg-navy-500/30 blur-[80px]" />
 
-            <PhoneMockup />
+            <Tilt max={12} scale={1.03}>
+              <PhoneMockup />
+            </Tilt>
 
             {/* Floating tags */}
             {floatingTags.map((t, i) => (
@@ -176,7 +209,7 @@ export function Hero() {
                 </motion.div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
 
@@ -186,10 +219,10 @@ export function Hero() {
   );
 }
 
-function Stat({ value, label }: { value: string; label: string }) {
+function Stat({ children, label }: { children: React.ReactNode; label: string }) {
   return (
     <div>
-      <div className="font-display text-2xl font-bold text-white">{value}</div>
+      <div className="font-display text-2xl font-bold text-white">{children}</div>
       <div className="text-[11px] uppercase tracking-wider text-white/40">{label}</div>
     </div>
   );

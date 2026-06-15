@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Sparkles, Zap, Activity, Cpu, ScanLine } from "lucide-react";
+import { Tilt } from "./interactive/Tilt";
 
 export function AIDiagnosis() {
   return (
@@ -64,6 +65,7 @@ export function AIDiagnosis() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="relative"
           >
+            <Tilt max={7} scale={1.015}>
             <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-navy-800/60 to-navy-950/80 p-6 backdrop-blur-xl shadow-premium">
               {/* corner accents */}
               <Corner pos="tl" />
@@ -198,6 +200,7 @@ export function AIDiagnosis() {
                 </div>
               </motion.div>
             </div>
+            </Tilt>
 
             {/* floating chips — anchored outside the card so they don't overlap interior icons */}
             <motion.div

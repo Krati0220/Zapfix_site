@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Download, Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
+import { Magnetic } from "./interactive/Magnetic";
 import { clsx } from "clsx";
 
 // Ordered to match scroll sequence:
@@ -124,10 +125,12 @@ export function Navbar() {
           <a href="#pro" className="btn-ghost py-2.5 text-xs">
             Join as Pro
           </a>
-          <a href="#download" className="btn-zap py-2.5 text-xs">
-            <Download className="h-3.5 w-3.5" strokeWidth={2.5} />
-            Download APK
-          </a>
+          <Magnetic strength={0.4}>
+            <a href="#download" className="btn-zap gradient-ring py-2.5 text-xs">
+              <Download className="h-3.5 w-3.5" strokeWidth={2.5} />
+              Download APK
+            </a>
+          </Magnetic>
         </div>
 
         <button
