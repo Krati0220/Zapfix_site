@@ -33,6 +33,9 @@ export const metadata: Metadata = {
       "Upload. Diagnose. Fix. India's first AI-powered home services platform.",
     type: "website",
   },
+  verification: {
+    google: "kiMJn7PzzaXbQTQrDwQcEoIUWLoA00nUO1htexyuVhk",
+  },
 };
 
 export const viewport: Viewport = {
