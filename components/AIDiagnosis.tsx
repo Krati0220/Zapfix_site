@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Sparkles, Zap, Activity, Cpu, ScanLine } from "lucide-react";
+import { Tilt } from "./interactive/Tilt";
 
 export function AIDiagnosis() {
   return (
@@ -64,6 +65,7 @@ export function AIDiagnosis() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="relative"
           >
+            <Tilt max={7} scale={1.015}>
             <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-navy-800/60 to-navy-950/80 p-6 backdrop-blur-xl shadow-premium">
               {/* corner accents */}
               <Corner pos="tl" />
@@ -190,7 +192,7 @@ export function AIDiagnosis() {
                     Fan motor replacement + gas top-up
                   </div>
                   <div className="text-xs text-white/60">
-                    Est. cost · ₹2,400 – ₹3,200 · 90-day warranty
+                    Est. cost · ₹2,400 – ₹3,200
                   </div>
                 </div>
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zap-500 text-navy-950">
@@ -198,6 +200,7 @@ export function AIDiagnosis() {
                 </div>
               </motion.div>
             </div>
+            </Tilt>
 
             {/* floating chips — anchored outside the card so they don't overlap interior icons */}
             <motion.div

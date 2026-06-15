@@ -202,6 +202,46 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Animated conic gradient border (for interactive CTAs / cards) */
+@keyframes spinConic {
+  to { transform: rotate(360deg); }
+}
+
+.gradient-ring {
+  position: relative;
+}
+.gradient-ring::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(245, 184, 0, 0.9) 60deg,
+    transparent 140deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: spinConic 4s linear infinite;
+  pointer-events: none;
+}
+.gradient-ring:hover::before {
+  opacity: 1;
+}
+
+/* Blinking "live" cursor / caret */
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.caret-blink { animation: blink 1s step-end infinite; }
+
 /* Floating particle dots */
 .particle {
   position: absolute;
@@ -224,3 +264,15 @@ body {
 .prose-legal ul li::before { content: ""; display: block; flex-shrink: 0; width: 6px; height: 6px; border-radius: 9999px; background: #f5b800; margin-top: 6px; }
 .prose-legal strong { color: #fff; font-weight: 600; }
 .prose-legal a { color: #fbbf24; text-decoration: underline; text-underline-offset: 2px; }
+
+/* Respect users who prefer reduced motion: calm everything down */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

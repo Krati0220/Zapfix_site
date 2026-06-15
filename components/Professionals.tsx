@@ -9,6 +9,8 @@ import {
   HeadphonesIcon,
   IndianRupee,
 } from "lucide-react";
+import { SpotlightCard } from "./interactive/SpotlightCard";
+import { CountUp } from "./interactive/CountUp";
 
 const pillars = [
   {
@@ -76,20 +78,17 @@ export function Professionals() {
         {/* Trust pillars */}
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {pillars.map((p, i) => (
-            <motion.div
-              key={p.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="card-premium"
-            >
-              <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-zap-500/30 bg-zap-500/10">
+            <SpotlightCard key={p.title} delay={i * 0.05} className="card-premium">
+              <motion.div
+                whileHover={{ rotate: 8, scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 300, damping: 12 }}
+                className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-zap-500/30 bg-zap-500/10"
+              >
                 <p.icon className="h-5 w-5 text-zap-400" />
-              </div>
+              </motion.div>
               <h3 className="font-display text-lg font-semibold">{p.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-white/55">{p.body}</p>
-            </motion.div>
+            </SpotlightCard>
           ))}
         </div>
 
@@ -135,8 +134,8 @@ export function Professionals() {
                 </div>
 
                 <div className="mt-5 grid grid-cols-3 gap-2 text-center">
-                  <Stat label="Rating" value={`${p.rating}★`} />
-                  <Stat label="Jobs" value={p.jobs.toLocaleString("en-IN")} />
+                  <Stat label="Rating" value={<CountUp to={p.rating} decimals={1} suffix="★" />} />
+                  <Stat label="Jobs" value={<CountUp to={p.jobs} />} />
                   <Stat label="Area" value={p.area} />
                 </div>
 
@@ -153,7 +152,7 @@ export function Professionals() {
   );
 }
 
-function Stat({ label, value }: { label: string; value: string }) {
+function Stat({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div className="rounded-xl border border-white/5 bg-white/[0.03] py-2.5">
       <div className="font-display text-sm font-bold text-white">{value}</div>

@@ -14,6 +14,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { clsx } from "clsx";
+import { Magnetic } from "./interactive/Magnetic";
 
 const customerSteps = [
   {
@@ -34,7 +35,7 @@ const customerSteps = [
   {
     icon: CheckCircle2,
     title: "Repair done. Tracked.",
-    body: "Live tracking, in-app chat, warranty + service history, all in one place.",
+    body: "Live tracking, in-app chat, and service history, all in one place.",
   },
 ];
 
@@ -119,6 +120,7 @@ export function HowItWorks() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
+                  whileHover={{ y: -6 }}
                   className="relative"
                 >
                   <StepCard step={step} index={i + 1} />
@@ -136,10 +138,12 @@ export function HowItWorks() {
         </div>
 
         <div className="mt-14 flex justify-center">
-          <a href="#download" className="btn-zap">
-            {mode === "customer" ? "Download APK" : "Join as a Pro"}
-            <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
-          </a>
+          <Magnetic strength={0.4}>
+            <a href="#download" className="btn-zap">
+              {mode === "customer" ? "Download APK" : "Join as a Pro"}
+              <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+            </a>
+          </Magnetic>
         </div>
       </div>
     </section>

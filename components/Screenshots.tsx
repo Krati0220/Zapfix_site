@@ -226,7 +226,7 @@ function ScreenContent({ variant }: { variant: (typeof screens)[number]["type"] 
       <div className="rounded-xl border border-zap-500/30 bg-gradient-to-br from-zap-500/15 to-transparent p-3">
         <div className="text-[8px] text-white/50">AC fan motor + gas</div>
         <div className="mt-1 font-display text-2xl font-bold text-zap-400">₹2,840</div>
-        <div className="text-[7px] text-white/40">All inclusive · 90d warranty</div>
+        <div className="text-[7px] text-white/40">All inclusive</div>
       </div>
       <div className="mt-3 space-y-1.5 text-[8px]">
         {[

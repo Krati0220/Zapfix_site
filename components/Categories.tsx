@@ -100,7 +100,6 @@ export function Categories() {
               <div key={dup} className="flex items-center gap-12">
                 {[
                   "Same-day repairs",
-                  "90-day warranty",
                   "Verified pros",
                   "Fixed pricing",
                   "Live tracking",

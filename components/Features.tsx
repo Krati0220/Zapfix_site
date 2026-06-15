@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { SpotlightCard } from "./interactive/SpotlightCard";
 import {
   Radar,
   Sparkles,
@@ -10,7 +11,6 @@ import {
   History,
   Gift,
   PackageCheck,
-  ShieldCheck,
   Bell,
 } from "lucide-react";
 
@@ -43,7 +43,7 @@ const features = [
   {
     icon: History,
     title: "Service history",
-    body: "Every repair, receipt, warranty, and part — saved forever.",
+    body: "Every repair, receipt, and part — saved forever.",
   },
   {
     icon: Gift,
@@ -54,11 +54,6 @@ const features = [
     icon: PackageCheck,
     title: "Inventory for pros",
     body: "Track parts, request stock, and never lose a job to missing tools again.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Warranty tracking",
-    body: "We log every warranty so you don't have to dig through old receipts.",
   },
   {
     icon: Bell,
@@ -91,24 +86,25 @@ export function Features() {
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {features.map((f, i) => (
-            <motion.div
+            <SpotlightCard
               key={f.title}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-30px" }}
-              transition={{ duration: 0.5, delay: (i % 4) * 0.05 }}
-              className="group relative overflow-hidden rounded-2xl border border-white/[0.07] bg-gradient-to-b from-white/[0.04] to-transparent p-5 transition-all duration-500 hover:-translate-y-1 hover:border-zap-500/30"
+              delay={(i % 4) * 0.05}
+              className="group overflow-hidden rounded-2xl border border-white/[0.07] bg-gradient-to-b from-white/[0.04] to-transparent p-5 transition-colors duration-500 hover:border-zap-500/30"
             >
-              <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-zap-500/30 bg-zap-500/10 transition-all duration-500 group-hover:bg-zap-500/20">
+              <motion.div
+                whileHover={{ rotate: 8, scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 300, damping: 12 }}
+                className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-zap-500/30 bg-zap-500/10 transition-colors duration-500 group-hover:bg-zap-500/20"
+              >
                 <f.icon className="h-4.5 w-4.5 text-zap-400" />
-              </div>
+              </motion.div>
               <h3 className="font-display text-base font-semibold">{f.title}</h3>
               <p className="mt-1.5 text-[13px] leading-relaxed text-white/55">
                 {f.body}
               </p>
               {/* hover shimmer */}
               <span className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-zap-500/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-            </motion.div>
+            </SpotlightCard>
           ))}
         </div>
       </div>
